@@ -6,20 +6,11 @@ import {DECREASE, INCREASE, RESET} from './actionTypes';
 import reducer from './reducers';
 
 const defaultState = {
-  count : 100,
+  count : 0,
   name: 'Feroz'
 }
 
-
-
 const store = createStore(reducer, defaultState );
-
-store.dispatch({type:RESET});
-store.dispatch({type:DECREASE});
-store.dispatch({type:INCREASE});
-
-
-
 
 console.log(store.getState());
 function App() {
