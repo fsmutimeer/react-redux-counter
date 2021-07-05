@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {DECREASE, INCREASE, RESET, MODAL_OPEN} from './actionTypes';
+import {increase, decrease, reset, modalOpan} from './actionTypes';
 
- function Counter({count,name,increase,decrease,reset}) {
+ function Counter({count,name,increase,decrease,reset, modalOpan}) {
   
     return (
         <div className="container">
@@ -12,7 +12,10 @@ import {DECREASE, INCREASE, RESET, MODAL_OPEN} from './actionTypes';
             
             <div className="buttons">
                 <button className="btn" type="button" onClick={decrease}  >Decrease</button>
-                <button className="btn" type="button" onClick={reset} >Reset</button>
+                <button className="btn" type="button" onClick={()=>{ 
+                    reset()
+                    modalOpan('Feroz','Model. this is MOdel. Hello Model  loruos lsalaslfu ourus lour slflsafoyrou  ljsfo oulur slfuo')
+                }} >Reset</button>
                 <button className="btn" type="button" onClick={increase} >Increase</button>
 
             </div>
@@ -24,19 +27,32 @@ function mapStateToProps({countState:{count, name}}){
     return {count: count, name: name}
 }
 
-function mapDispatchToProps(dispatch, ownProps){
-    return {
-        increase:()=>dispatch({type:INCREASE}),
-        decrease:()=>dispatch({type:DECREASE}),
-        reset:()=>{
+// const mapDispatchToProps = {
+//     increase, 
+//     reset,
+//     decrease,
+//     modalOpan
+// }
 
-            dispatch({type:RESET})
-            dispatch({type:MODAL_OPEN, payload:{name:'Feroz',text:"Hello model helolj aljfla fasdflj lrousfm aslfjiue aoeljs falfja; f"}})
+// function mapDispatchToProps(dispatch, ownProps){
+//     return {
+//         increase:()=>dispatch(increase()),
+//         decrease:()=>dispatch(decrease()),
+//         reset:()=>{
 
-                },
+//             dispatch(reset())
+//             dispatch(modalOpan('Feroz','Hello Model kladf ja3iua jlorums sladjfie lksadj lasdfj 8el jaskldfj a8e adfl;a ;a asdlfa dfljaldff jlsadfjlaks fasldfj j'))
+
+//                 },
         
-    }
-}
+//     }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, {
+    increase, 
+    reset,
+    decrease,
+    modalOpan
+
+})(Counter);
