@@ -1,24 +1,26 @@
 import './App.css';
 import Counter from './Counter';
-import {createStore} from 'redux';
+import {createStore, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
-import {DECREASE, INCREASE, RESET} from './actionTypes';
-import reducer from './countReducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const defaultState = {
-  count : 0,
-  name: 'Feroz'
-}
 
-const store = createStore(reducer, defaultState,
-                        composeWithDevTools() );
+import countReducer from './countReducers';
+import productReducer from './productReducer';
+import modalReducer from './modalReduce';
 
-console.log(store.getState());
+import Modal from './Modal';
+
+const store = createStore(combineReducers({
+  countState:countReducer,
+  productState:productReducer,
+  modalState:modalReducer}), composeWithDevTools() );
+
 function App() {
   return (
     <Provider store= {store}>
       <Counter/>
+      <Modal />
    </Provider>
    
   );

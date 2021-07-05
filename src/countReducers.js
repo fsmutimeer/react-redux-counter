@@ -1,7 +1,13 @@
 import {DECREASE, INCREASE, RESET} from './actionTypes';
 
 
-export default function reducer (state, action){
+const defaultState = {
+  count : 0,
+  name: 'Feroz'
+}
+
+
+export default function reducer (state=defaultState, action){
     // if (action.type === "DECREASE"){
     //   return {...state, count:state.count-1}
     // }
